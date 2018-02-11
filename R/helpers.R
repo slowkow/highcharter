@@ -317,13 +317,13 @@ get_hc_series_from_df <- function(data, type = NULL, ...) {
   if (!has_name(parsc, "group"))
     data[["group"]] <- "Series"
 
-  data[["charttpye"]] <- type
+  data[["charttype"]] <- type
 
   dfs <- data %>%
-    group_by_("group", "charttpye") %>%
-    do(data = list_parse(select_(., quote(-group), quote(-charttpye)))) %>%
+    group_by_("group", "charttype") %>%
+    do(data = list_parse(select_(., quote(-group), quote(-charttype)))) %>%
     ungroup() %>%
-    rename_("name" = "group", "type" = "charttpye")
+    rename_("name" = "group", "type" = "charttype")
 
   if (!has_name(parsc, "group"))
     dfs[["name"]] <- NULL
